@@ -1,12 +1,18 @@
-use raylib::prelude::*;
+use macroquad::prelude::*;
 
-fn main() {
-    let (mut rl, thread) = raylib::init().size(640, 480).title("Hello, World").build();
+#[macroquad::main("Black Jack")]
+async fn main() {
+    loop {
+        clear_background(GREEN);
 
-    while !rl.window_should_close() {
-        let mut d = rl.begin_drawing(&thread);
+        draw_line(40.0, 40.0, 100.0, 200.0, 15.0, BLUE);
+        draw_rectangle(screen_width() / 2.0 - 60.0, 100.0, 120.0, 60.0, GREEN);
+        draw_circle(screen_width() - 30.0, screen_height() - 30.0, 15.0, YELLOW);
+        draw_text("HELLO", 20.0, 20.0, 20.0, DARKGRAY);
 
-        d.clear_background(Color::WHITE);
-        d.draw_text("Hello, world!", 12, 12, 20, Color::BLACK);
+        //draw the button and actions at the bottom of the screen
+        draw_rectangle(screen_width() / 2.0 - 60.0, 100.0, 120.0, 60.0, WHITE);
+
+        next_frame().await
     }
 }
